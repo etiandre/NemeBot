@@ -70,7 +70,7 @@ class Bot(ircbot.SingleServerIRCBot):
                 serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl guilde.pl '" + arg + "'"))
                 print "terminé"
         elif message.startswith("!help"):
-            serv.privmsg(self.chan,"Commandes dispo pour NemeBot: !joueur !ville !alliance.")
+            serv.notice(pseudo,"Commandes dispo pour NemeBot: !joueur !ville !alliance.")
     def on_join(self, serv, ev):
         pseudo = ev.source().split("!")[0].lower()
         if pseudo=="nemebot":
