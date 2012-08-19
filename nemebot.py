@@ -42,7 +42,7 @@ class Bot(ircbot.SingleServerIRCBot):
                 if arg=="" or re.search(r"[^\w\s]",arg):
                     raise ValueError
             except:
-                serv.privmsg(self.chan, "Usage: !joueur <joueur>")
+                serv.notice(pseudo, "Usage: !joueur <joueur>")
             else:
                 print "recherche d'infos sur", arg
                 serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl joueur.pl " + arg))
@@ -53,10 +53,10 @@ class Bot(ircbot.SingleServerIRCBot):
                 if arg=="" or re.search(r"[^\w\s]",arg):
                     raise ValueError
             except:
-                serv.privmsg(self.chan, "Usage: !ville <ville>")
+                serv.notice(pseudo, "Usage: !ville <ville>")
             else:
                 print "recherche ville", arg
-                serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl ville.pl '" + arg + "'",))
+                serv.notice(pseudo,commands.getoutput("/usr/bin/perl ville.pl '" + arg + "'",))
                 print "terminé"
         elif message.startswith("!alliance"):
             try:
@@ -64,7 +64,7 @@ class Bot(ircbot.SingleServerIRCBot):
                 if arg=="" or re.search(r"[^\w\s]",arg):
                     raise ValueError
             except:
-                serv.privmsg(self.chan, "Usage: !alliance <alliance>")
+                serv.notice(pseudo, "Usage: !alliance <alliance>")
             else:
                 print "recherche alliance", arg
                 serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl guilde.pl '" + arg + "'"))
