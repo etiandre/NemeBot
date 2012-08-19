@@ -1,5 +1,5 @@
 use WWW::Mechanize;
-# use Digest::SHA1;
+
 use strict;
 use warnings;
 use POSIX;
@@ -8,7 +8,11 @@ use POSIX;
 my $ua="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0.1";
 my $login="etiandre";
 
-
+my $password;
+open(my $f, "password") or die("SHA1 du mot de passe à mettre dans le fichier 'password'");
+$password=<$f>;
+chomp($password);
+close($f);
 
 my $ville=shift; # joueur récupéré dans les arguments du script
 
@@ -25,7 +29,7 @@ $mech->submit_form(
 	fields => {
 		username=>$login,
 		password=>"",
-        sha1password=>"334b3b6db54ec9126b12e29fcaa972b7e138c6a3",
+        sha1password=>$password,
         remember=>0
 	}
 );

@@ -33,24 +33,16 @@ class Bot(ircbot.SingleServerIRCBot):
         if "ça va" in message.lower() and "nemebot" in message.lower() and "dieu" in pseudo:
             serv.privmsg(self.chan,"Tranquille wesh, et toi Dieu?")
         # fin de l'interfacage avec Dieu
-#        if re.search(r"rapport/pub\?id=(\w+)",message): # si le message contient un rapport
-#            rapport = re.search(r"/aurora.nemeria.com/rapport/pub\?id=(\w+)",message).group(1)
-#            serv.privmsg(self.chan,"Je vais chercher les infos (id " + rapport + ")")
-#            print "Extraction rapport"
-#            out=subprocess.Popen("/usr/bin/perl extractRapport.pl " + rapport,shell=True).stdout.read()
-#            for i in out.split("\n"):
-#                serv.privmsg(self.chan,i)
-#            print "Terminé"
         if message.startswith("!joueur"):
             try:
                 arg=message.split("!joueur ")[1]
-                if arg=="" or re.search(r"\W",arg):
+                if arg=="" or re.search(r"[^\w\s]",arg):
                     raise ValueError
             except:
                 serv.privmsg(self.chan, "Usage: !joueur <joueur>")
             else:
                 print "recherche d'infos sur", arg
-                serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl guildeJoueur.pl " + arg))
+                serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl joueur.pl " + arg))
                 print "terminé"
         elif message.startswith("!ville"):
             try:
@@ -82,7 +74,7 @@ class Bot(ircbot.SingleServerIRCBot):
             return
         print pseudo," joined"
         print "recherche d'infos sur", pseudo
-        serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl guildeJoueur.pl " + pseudo))
+        serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl joueur.pl " + pseudo))
         print "terminé"
         if self.chan=="#twan" and ("etiandre" in pseudo or "twan" in pseudo):
             print "Opping "+pseudo
