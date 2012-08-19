@@ -15,7 +15,7 @@ class Bot(ircbot.SingleServerIRCBot):
         print "Connexion en cours..."
         ircbot.SingleServerIRCBot.__init__(self, [("irc.nemeria.com", 6667)],
                                            "NemeBot", "NemeBot")
-        self.chan="#test" # modifier ici le chan où se connecter
+        self.chan="#nemeria" # modifier ici le chan où se connecter
         self.nicks=dict()
         self.wait=60 # secondes
     def on_welcome(self, serv, ev):
