@@ -8,13 +8,16 @@ import random
 import re
 import pickle
 import commands
+import time
 
 class Bot(ircbot.SingleServerIRCBot):
     def __init__(self):
         print "Connexion en cours..."
         ircbot.SingleServerIRCBot.__init__(self, [("irc.nemeria.com", 6667)],
                                            "NemeBot", "NemeBot")
-        self.chan="#nemeria" # modifier ici le chan où se connecter
+        self.chan="#test" # modifier ici le chan où se connecter
+        self.nicks=dict()
+        self.wait=60 # secondes
     def on_welcome(self, serv, ev):
         serv.join(self.chan)
         print "Réussi"
@@ -73,9 +76,14 @@ class Bot(ircbot.SingleServerIRCBot):
         if pseudo=="nemebot":
             return
         print pseudo," joined"
-        print "recherche d'infos sur", pseudo
-        serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl joueur.pl " + pseudo))
-        print "terminé"
+        if not pseudo in self.nicks or self.nicks[pseudo] <= int(time.time()):
+            print "recherche d'infos sur", pseudo
+            out=commands.getoutput("/usr/bin/perl joueur.pl " + pseudo)
+            if not "Pas de résultat de recherche pour" in out:
+                serv.privmsg(self.chan,out)
+            print "terminé"
+        self.nicks[pseudo]=int(time.time())+self.wait
+
         if self.chan=="#twan" and ("etiandre" in pseudo or "twan" in pseudo):
             print "Opping "+pseudo
             serv.mode(self.chan," +o " + pseudo)
