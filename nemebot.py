@@ -21,7 +21,7 @@ class Bot(ircbot.SingleServerIRCBot):
     def on_welcome(self, serv, ev):
         serv.join(self.chan)
         print "Réussi"
-        serv.privmsg(self.chan, "NemeBot par eti.andre@gmail.com est sur "+self.chan+". !help pour une liste des commandes.")
+#        serv.privmsg(self.chan, "NemeBot par eti.andre@gmail.com est sur "+self.chan+". !help pour une liste des commandes.")
     def on_pubmsg(self, serv, ev):
         message = ev.arguments()[0]
         pseudo=ev.source().split("!")[0].lower()
