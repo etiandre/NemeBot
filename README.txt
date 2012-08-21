@@ -9,10 +9,7 @@ Les parties qui vont chercher les infos sur Nemeria sont écrites en perl, avec 
 
 CONFIGURATION:
 SHA1 du mot de passe à mettre dans un fichier "password".
-nom de comte à modifier dans chaque script perl.
-
-LANCEMENT:
-Lancer nemebot.py avec python2.
+Le reste est à modifier dans chaque fichier (démerdez-vous que diable)
     
     
 
