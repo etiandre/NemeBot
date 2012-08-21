@@ -56,7 +56,7 @@ class Bot(ircbot.SingleServerIRCBot):
                 serv.notice(pseudo, "Usage: !ville <ville>")
             else:
                 print "recherche ville", arg
-                serv.notice(pseudo,commands.getoutput("/usr/bin/perl ville.pl '" + arg + "'",))
+                serv.privmsg(self.chan,commands.getoutput("/usr/bin/perl ville.pl '" + arg + "'",))
                 print "terminé"
         elif message.startswith("!alliance"):
             try:
