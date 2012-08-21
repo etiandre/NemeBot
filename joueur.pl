@@ -41,6 +41,9 @@ my $id;
 if ($mech->content() =~ /\[\{"id":(\d+),"nom":"($joueur)"/i) {
     $id=$1;
     $joueur=$2;
+} else {
+    print("Pas de résultat de recherche pour $joueur.\n");
+    exit();
 }
 $mech->get("http://aurora.nemeria.com/profil?id=$id");
 if ($mech->text() =~ /Alliance : (.+)\s+Peuple : (\w+)\s+Population : (\d+)\s+Description.+Classement G\wn\wral : (\d+)/) {
