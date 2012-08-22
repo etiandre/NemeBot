@@ -21,7 +21,6 @@ class Bot(ircbot.SingleServerIRCBot):
     def on_welcome(self, serv, ev):
         serv.join(self.chan)
         print "Réussi"
-#        serv.privmsg(self.chan, "NemeBot par eti.andre@gmail.com est sur "+self.chan+". !help pour une liste des commandes.")
     def on_pubmsg(self, serv, ev):
         message = ev.arguments()[0]
         pseudo=ev.source().split("!")[0].lower()
@@ -30,12 +29,6 @@ class Bot(ircbot.SingleServerIRCBot):
                 print "deco"
                 serv.disconnect("Bye")
                 exit()
-        # partie pour interfacer avec le bot "Dieu" de Twan, à supprimer si non nécessaire
-        if not "nemebot" in message and "on applaudit" in message.lower() and "dieu" in pseudo:
-             serv.privmsg(self.chan,"clap clap")
-        if "ça va" in message.lower() and "nemebot" in message.lower() and "dieu" in pseudo:
-            serv.privmsg(self.chan,"Tranquille wesh, et toi Dieu?")
-        # fin de l'interfacage avec Dieu
         if message.startswith("!joueur"):
             try:
                 arg=message.split("!joueur ")[1]
