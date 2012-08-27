@@ -1,26 +1,15 @@
 NemeBot, un bot irc pour #nemeria fait avec amour par eti.andre@gmail.com
 
-PREREQUIS:
+/!\ CE BOT PEUT VOUS FAIRE BAN VOTRE COMPTE SI VOUS VOUS GOURREZ QQPART
+Merci de ne pas le connecter sur #nemeria, je m'en occuppe.
 
+PREREQUIS:
 NemeBot est écrit en python2 avec la librairie irclib, à installer.
 Les parties qui vont chercher les infos sur Nemeria sont écrites en perl, avec la librairie WWW::Mechanize.
 
 CONFIGURATION:
-Dans nemebot.py:
-    Editer lignes 15 à 17 l'info du serveur et le chan.
-    Supprimer lignes 30 à 35 si on veut pas causer un peu avec "Dieu", le bot de Twan.
-    Supprimer lignes 79 à 88 si on veut pas appeler Alucards un boulet :D
-Dans guildeJoueur.pl:
-    Editer l'user-agent du Bot. ($ua)
-    Editer le login du compte utilisé par le bot. ($login)
-    Editer le mot de passe de ce compte. ($password)
-Dans ville.pl:
-    Idem.
-Dans extractRapport.pl:
-    Idem.
-
-LANCEMENT:
-    Lancer nemebot.py avec python2.
+SHA1 du mot de passe à mettre dans un fichier "password".
+Le reste est à modifier dans chaque fichier (démerdez-vous que diable)
     
     
 

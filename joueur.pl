@@ -41,11 +41,13 @@ my $id;
 if ($mech->content() =~ /\[\{"id":(\d+),"nom":"($joueur)"/i) {
     $id=$1;
     $joueur=$2;
+} else {
+    print("Pas de résultat de recherche pour $joueur.\n");
+    exit();
 }
 $mech->get("http://aurora.nemeria.com/profil?id=$id");
 if ($mech->text() =~ /Alliance : (.+)\s+Peuple : (\w+)\s+Population : (\d+)\s+Description.+Classement G\wn\wral : (\d+)/) {
     print "$joueur est un $2 dans l'alliance $1. (pop: $3, classé n°$4) http://aurora.nemeria.com/profil?id=$id\n";
 } else {
     print "Erreur lors de la récupération des infos pour $joueur.\n";
-    print STDERR $mech->text();
 }

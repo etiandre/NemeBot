@@ -44,4 +44,4 @@ if ($mech->content() =~ /\[\{"id":(\d+),"nom":"($ville)",.+,"nomJoueur":"(\w+)",
     # my $x=$case%201 - ceil(201/2-1);
     # my $y=floor($case/201)+1 - ceil(201/2);
     print "$2 de $3 (x=$4,y=$5) http://aurora.nemeria.com/carte?case=$case\n";
-} else { print STDERR $mech->content(); print "Erreur lors de la récupération des infos pour $ville.\n"; }
+} else { print "Erreur lors de la récupération des infos pour $ville.\n"; }

@@ -43,5 +43,4 @@ if ($mech->text() =~ /(\d+) joueurs(\d+) habitants.+(\d+) Diplomatie\s+En guerre
     print "Alliance $guilde: classé n°$3, $1 joueurs avec $2 hab. (Guerre|Neutre|Allié): ($4|$5|$6) http://aurora.nemeria.com/alliance?id=$id\n";
 } else {
     print "Erreur lors de la récupération des infos pour $guilde.\n";
-    print STDERR $mech->text();
 }
