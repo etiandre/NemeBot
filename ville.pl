@@ -40,7 +40,7 @@ if ($mech->content() eq "[]") {
 }
 my $case;
 if ($mech->content() =~ /\[\{"id":(\d+),"nom":"($ville)",.+,"nomJoueur":"(\w+)","x":([\d-]+),"y":([\d-]+)/i) {
-    $case=(floor(201/2)+$5)*201 + (floor(201/2)+$4); # trouvé dans carte.js . Cher admin, ne laisse pas les vieux bouts de code qui marchent pas pour convertir x,y en id dans tes js, ça fait chier les botmakers.
+    $case=(floor(201/2)+$5)*201 + (floor(201/2)+$4); # trouvé dans carte.js .
     # my $x=$case%201 - ceil(201/2-1);
     # my $y=floor($case/201)+1 - ceil(201/2);
     print "$2 de $3 (x=$4,y=$5) http://aurora.nemeria.com/carte?case=$case\n";
