@@ -86,7 +86,7 @@ class Bot(ircbot.SingleServerIRCBot):
                     serv.privmsg(self.chan,"Pas trouvé.")
 
         elif message.startswith("!help"):
-            serv.notice(pseudo,"Commandes dispo pour NemeBot: !joueur !alliance !coords.")
+            serv.notice(pseudo,"Commandes dispo pour NemeBot: !joueur !alliance !ville.")
     def on_join(self, serv, ev):
         pseudo = ev.source().split("!")[0].lower()
         if pseudo=="nemebot":
