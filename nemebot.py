@@ -37,7 +37,7 @@ class Bot(ircbot.SingleServerIRCBot):
             except:
                 serv.notice(pseudo, "Usage: !joueur <nomdujoueur>")
             else:
-                #~ try:
+                try:
                     self.sql.execute('SELECT * FROM joueurs WHERE nom LIKE ?',(arg,))
                     j=self.sql.fetchone()
                     self.sql.execute('SELECT * FROM alliances WHERE id=?',(j[4],))
@@ -48,8 +48,8 @@ class Bot(ircbot.SingleServerIRCBot):
                     for v in self.sql.execute('SELECT * FROM villes WHERE id_joueur=?',(j[0],)):
                         s+=str(v[3])+"; "
                     serv.privmsg(self.chan, s)
-                #~ except:
-                    #~ serv.privmsg(self.chan, "Pas trouvé")
+                except:
+                    serv.privmsg(self.chan, "Pas trouvé")
         elif message.startswith("!alliance"):
             try:
                 arg=message.split("!alliance ")[1]
