@@ -33,13 +33,14 @@ $db->do('CREATE TABLE "villes" (
   "nom" varchar(20) NOT NULL,
   "pop" integer NOT NULL
 )');
-print "http://$monde.nemeria.com/ext\n";
-my $content=get("http://$monde.nemeria.com/ext");
+#~ my $content=get("http://$monde.nemeria.com/ext");
+open(my $f,"$monde.xml");
+my $content=<$f>;
+close($f);
 my $ref=XMLin($content, ForceArray=>['joueur']);
 my $joueurs=$ref->{'joueurs'}->{'joueur'};
 my $alliances=$ref->{'alliances'}->{'alliance'};
 my $villes=$ref->{'villes'}->{'ville'};
-print "pouet\n";
 $r=$db->prepare("INSERT into villes (id,terrain,id_joueur,nom,pop) VALUES (?,?,?,?,?);");
 print(keys($villes)." villes, ");
 foreach my $v (keys $villes) {
@@ -52,10 +53,9 @@ foreach my $v (keys $villes) {
         $villes->{$v}->{'population'},
     ) or print($v.Dumper($villes->{$v}));
 }
-print("\n");
 
 $r=$db->prepare("INSERT into alliances (id,nom,pop,classement) VALUES (?,?,?,?);");
-print(keys($alliances)." alliances,");
+print(keys($alliances)." alliances, ");
 foreach my $a (keys $alliances) {
     print STDERR ".";
     $r->execute(
@@ -65,7 +65,6 @@ foreach my $a (keys $alliances) {
         $alliances->{$a}->{'classement'},
     ) or print($a.Dumper($alliances->{$a}));
 }
-print("\n");
 
 print(keys($joueurs)." joueurs.\n");
 $r=$db->prepare("INSERT into joueurs (id,nom,pop,classement,id_alliance) VALUES (?,?,?,?,?);");

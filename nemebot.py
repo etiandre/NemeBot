@@ -17,7 +17,7 @@ class Bot(ircbot.SingleServerIRCBot):
         ircbot.SingleServerIRCBot.__init__(self, [("irc.nemeria.com", 6667)],
                                            "NemeBot", "SQL NemeBot")
         self.chan="#test" # modifier ici le chan où se connecter
-        self.monde="aurora"
+        self.monde="bellios"
         self.sql=sqlite3.connect(self.monde+".db").cursor()
     def on_welcome(self, serv, ev):
         serv.join(self.chan)
@@ -31,7 +31,7 @@ class Bot(ircbot.SingleServerIRCBot):
                 print "deco"
                 serv.disconnect("Bye")
                 exit()
-        if message.startswith("!monde "):
+        if message.startswith("!monde"):
             try:
                 arg=message.split("!monde ")[1].lower()
                 if arg=="" or re.search(r"[^\w]",arg):
@@ -43,13 +43,14 @@ class Bot(ircbot.SingleServerIRCBot):
                     self.monde="bellios"
                 elif "aurora" in arg:
                     self.monde="aurora"
-               self.sql=sqlite3.connect(self.monde+".db").cursor()
+                self.sql=sqlite3.connect(self.monde+".db").cursor()
+                serv.privmsg(self.chan,"Switché sur "+self.monde)
         elif message.startswith("!update"):
             serv.privmsg(self.chan,"Mise à jour de la db de "+self.monde+"... à dans 5 minutes...")
             serv.privmsg(self.chan,commands.getoutput("perl monde2sql.pl "+self.monde))
             serv.privmsg(self.chan,"Fin de la mise à jour de "+self.monde+".")
         elif message.startswith("!dbinfo"):
-            serv.privmsg(self.chan,"Monde courant: "+self.monde".")
+            serv.privmsg(self.chan,"Monde courant: "+self.monde+".")
         elif message.startswith("!joueur"):
             try:
                 arg=message.split("!joueur ")[1].lower()
