@@ -16,7 +16,7 @@ class Bot(ircbot.SingleServerIRCBot):
         print "Connexion en cours..."
         ircbot.SingleServerIRCBot.__init__(self, [("irc.nemeria.com", 6667)],
                                            "NemeBot", "SQL NemeBot")
-        self.chan="#test" # modifier ici le chan où se connecter
+        self.chan="#nemeria" # modifier ici le chan où se connecter
         self.monde="bellios"
         self.sql=sqlite3.connect(self.monde+".db").cursor()
     def on_welcome(self, serv, ev):
